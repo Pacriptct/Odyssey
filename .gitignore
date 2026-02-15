@@ -1,0 +1,47 @@
+cat > .gitignore << 'EOF'
+# Wally packages and lock files
+Packages/
+wally.lock
+server/Packages/
+server/wally.lock
+
+# Roblox Studio
+*.rbxl.lock
+*.rbxlx.lock
+*.rbxl
+*.rbxlx
+
+# Roblox place files (optional - uncomment if you want to track them)
+# Remove the # below if you DO want to commit your .rbxl/.rbxlx files
+# !*.rbxl
+# !*.rbxlx
+
+# Rojo
+build/
+*.project.json.lock
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Temporar
