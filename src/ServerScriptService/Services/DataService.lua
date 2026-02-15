@@ -4,7 +4,7 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
-local ServerPackages = ServerScriptService:WaitForChild("ServerPackages")
+local ServerPackages = ServerScriptService:WaitForChild("Packages")
 local ProfileStore = require(ServerPackages.ProfileStore)
 
 local Template = require(ReplicatedStorage.Shared.DataTemplate)

@@ -8,13 +8,6 @@ server/wally.lock
 # Roblox Studio
 *.rbxl.lock
 *.rbxlx.lock
-*.rbxl
-*.rbxlx
-
-# Roblox place files (optional - uncomment if you want to track them)
-# Remove the # below if you DO want to commit your .rbxl/.rbxlx files
-# !*.rbxl
-# !*.rbxlx
 
 # Rojo
 build/
@@ -39,9 +32,20 @@ Desktop.ini
 .idea/
 *.swp
 *.swo
-*~
 
 # Logs
 *.log
 
-# Temporar
+# Temporary/backup files
+*.tmp
+*.bak
+*-backup.*
+*.old
+
+# Node modules (if using any JS tools)
+node_modules/
+
+# Environment files
+.env
+.env.local
+EOF
