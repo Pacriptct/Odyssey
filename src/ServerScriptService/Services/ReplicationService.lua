@@ -34,12 +34,12 @@ function ReplicationService:SendSnapshot(player: Player)
 	if not data then return end
 
 	-- Send snapshot to client
-	self.networker:fireClient(player, "ReceiveSnapshot", data)
+	self.networker:fire(player, "ReceiveSnapshot", data)
 end
 
 function ReplicationService:SendPatch(player: Player, patch: { [string]: any })
 	-- Send patch to client
-	self.networker:fireClient(player, "ReceivePatch", patch)
+	self.networker:fire(player, "ReceivePatch", patch)
 end
 
 return ReplicationService

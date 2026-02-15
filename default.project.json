@@ -27,11 +27,6 @@
         "$className": "StarterPlayerScripts",
         "$path": "src/StarterPlayerScripts"
       }
-    },
-
-    "StarterGui": {
-      "$className": "StarterGui",
-      "$path": "src/StarterGui"
     }
   }
 }

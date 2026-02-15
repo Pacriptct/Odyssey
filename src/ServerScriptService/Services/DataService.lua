@@ -12,17 +12,29 @@ local Logger = require(ReplicatedStorage.Shared.Logger)
 
 type PlayerData = typeof(Template)
 
+-- ProfileStore types
+type Profile = {
+	Data: PlayerData,
+	OnSessionEnd: any, -- ProfileStore's custom signal type
+	AddUserId: (self: Profile, userId: number) -> (),
+	EndSession: (self: Profile) -> (),
+}
+
+type Store = {
+	StartSessionAsync: (self: Store, key: string, cancel: (() -> boolean)?) -> Profile?,
+}
+
 local DataService = {}
 DataService.__index = DataService
 
-local STORE_NAME = "Odyssey_PD_v1"
+local STORE_NAME = "Odyssey_Dev_v0.0001"
 
-function DataService:Init(container)
+function DataService:Init(container: any)
 	self.ReplicationService = container:Get("ReplicationService")
 	self._log = Logger.new("DataService")
-	self._profiles = {} :: { [Player]: any }
+	self._profiles = {} :: { [Player]: Profile }
 
-	self._store = ProfileStore.New(STORE_NAME, Template)
+	self._store = ProfileStore.New(STORE_NAME, Template) :: Store
 
 	Players.PlayerAdded:Connect(function(player)
 		self:_Load(player)
@@ -38,7 +50,7 @@ end
 function DataService:_Load(player: Player)
 	local profile = self._store:StartSessionAsync(
 		"Player_" .. player.UserId
-	)
+	) :: Profile?
 
 	if not profile then
 		player:Kick("Data failed to load.")
@@ -82,14 +94,14 @@ end
 
 function DataService:Get(player: Player): PlayerData?
 	local profile = self._profiles[player]
-	return profile and profile.Data
+	return if profile then profile.Data else nil
 end
 
 function DataService:Set(player: Player, key: string, value: any)
 	local data = self:Get(player)
 	if not data then return end
 
-	data[key] = value
+	(data :: any)[key] = value
 
 	if self.ReplicationService then
 		self.ReplicationService:SendPatch(player, {
@@ -103,7 +115,7 @@ function DataService:Patch(player: Player, patch: { [string]: any })
 	if not data then return end
 
 	for k, v in pairs(patch) do
-		data[k] = v
+		(data :: any)[k] = v
 	end
 
 	if self.ReplicationService then
@@ -116,11 +128,30 @@ function DataService:WipeCharacter(player: Player)
 	local profile = self._profiles[player]
 	if not profile then return end
 
-	profile.Data = table.clone(Template)
-	profile.Data.WipeState = true
-	profile.Data.SchemaVersion = Template.SchemaVersion
+	-- Create a new copy of the template
+	local newData = table.clone(Template) :: PlayerData
+	newData.WipeState = true
+	newData.SchemaVersion = Template.SchemaVersion
+	
+	profile.Data = newData
 
 	self._log:Warn("Character wiped for", player.Name)
+end
+
+-- Force wipe for testing
+function DataService:ForceWipe(player: Player)
+	local data = self:Get(player)
+	if not data then return end
+	
+	-- Reset only the character creation fields
+	data.FirstName = ""
+	data.LastName = ""
+	data.FullName = ""
+	data.Gender = ""
+	data.Age = 0
+	data.Birthplace = ""
+	
+	self._log:Warn("Character data reset for", player.Name)
 end
 
 return DataService

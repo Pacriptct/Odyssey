@@ -20,6 +20,8 @@ function ControllerContainer:Init()
 			controller:Init(self)
 		end
 	end
+
+	_G.ControllerContainer = self
 end
 
 function ControllerContainer:Get(name: string)
