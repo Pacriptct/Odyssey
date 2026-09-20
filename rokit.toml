@@ -1,0 +1,7 @@
+# Toolchain pinned by Rokit (https://github.com/rojo-rbx/rokit).
+# `rokit install` puts these on your PATH for this project.
+
+[tools]
+rojo = "rojo-rbx/rojo@7.6.1"
+wally = "UpliftGames/wally@0.3.2"
+wally-package-types = "JohnnyMorganz/wally-package-types@1.6.2"

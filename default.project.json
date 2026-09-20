@@ -1,31 +1,42 @@
 {
-  "name": "Odyssey",
+  "name": "OdysseyGame",
   "tree": {
     "$className": "DataModel",
 
+    "ReplicatedFirst": {
+      "$className": "ReplicatedFirst",
+      "OdysseyLoader": {
+        "$path": "src/ReplicatedFirst/OdysseyLoader.client.luau"
+      }
+    },
+
     "ReplicatedStorage": {
       "$className": "ReplicatedStorage",
+      "Shared": {
+        "$path": "src/shared"
+      },
       "Packages": {
         "$path": "Packages"
-      },
-      "$path": "src/ReplicatedStorage"
+      }
     },
 
     "ServerScriptService": {
       "$className": "ServerScriptService",
-      "$path": "src/ServerScriptService"
-    },
-
-    "ServerStorage": {
-      "$className": "ServerStorage",
-      "$path": "src/ServerStorage"
+      "OdysseyEngine": {
+        "$path": "src/OdysseyEngine"
+      },
+      "ServerPackages": {
+        "$path": "ServerPackages"
+      }
     },
 
     "StarterPlayer": {
       "$className": "StarterPlayer",
       "StarterPlayerScripts": {
         "$className": "StarterPlayerScripts",
-        "$path": "src/StarterPlayerScripts"
+        "Client": {
+          "$path": "src/client"
+        }
       }
     }
   }

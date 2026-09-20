@@ -1,51 +1,11 @@
-cat > .gitignore << 'EOF'
-# Wally packages and lock files
-Packages/
-wally.lock
-server/Packages/
-server/wally.lock
+# Wally-managed dependencies (restore with `wally install`)
+/Packages
+/ServerPackages
+/DevPackages
 
-# Roblox Studio
-*.rbxl.lock
-*.rbxlx.lock
+# Built places
+*.rbxlx
+*.rbxl
 
-# Rojo
-build/
-*.project.json.lock
-
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
-._*
-
-# Windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Linux
-*~
-
-# IDEs
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Logs
-*.log
-
-# Temporary/backup files
-*.tmp
-*.bak
-*-backup.*
-*.old
-
-# Node modules (if using any JS tools)
-node_modules/
-
-# Environment files
-.env
-.env.local
-EOF
+# Rojo session files
+sourcemap.json
