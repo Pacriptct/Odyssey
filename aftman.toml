@@ -1,0 +1,8 @@
+# Same toolchain as rokit.toml, for Aftman users (and tools like the VS Code
+# Rojo extension that look for this file). Rokit is the successor to Aftman
+# and reads rokit.toml; either manager works — install one, not both.
+
+[tools]
+rojo = "rojo-rbx/rojo@7.6.1"
+wally = "UpliftGames/wally@0.3.2"
+wally-package-types = "JohnnyMorganz/wally-package-types@1.6.2"

@@ -20,6 +20,11 @@ wally install          # fetches Packages/ and ServerPackages/
 rojo build -o "Game.rbxlx"
 ```
 
+If something asks for **Aftman** instead (e.g. the VS Code Rojo extension),
+`aftman.toml` pins the same tools — install
+[Aftman](https://github.com/LPGhatguy/aftman) and run `aftman install`. Use
+one manager or the other, not both.
+
 Open `Game.rbxlx` in Roblox Studio, then live-sync source edits:
 
 ```bash
